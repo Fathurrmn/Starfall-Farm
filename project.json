@@ -1,0 +1,632 @@
+{
+  "title": "Peternakan Tepi Kolam",
+  "description": "Peternakan pixel art di tepi kolam dengan siklus siang-malam mengikuti waktu nyata",
+  "type": "web",
+  "file": "index.html",
+  "contentrating": "Everyone",
+  "tags": [
+    "Nature",
+    "Relaxing"
+  ],
+  "version": 1,
+  "general": {
+    "properties": {
+      "__g_time": {
+        "index": 0,
+        "order": 0,
+        "text": "── Time & Sky ──",
+        "type": "text"
+      },
+      "modewaktu": {
+        "index": 1,
+        "order": 1,
+        "text": "Time",
+        "type": "combo",
+        "value": "real",
+        "options": [
+          {
+            "label": "Real time",
+            "value": "real"
+          },
+          {
+            "label": "Manual",
+            "value": "manual"
+          }
+        ]
+      },
+      "jammanual": {
+        "index": 2,
+        "order": 2,
+        "text": "Manual hour",
+        "type": "slider",
+        "min": 0,
+        "max": 24,
+        "value": 12
+      },
+      "bintang": {
+        "index": 3,
+        "order": 3,
+        "text": "Stars",
+        "type": "bool",
+        "value": true
+      },
+      "bintangjatuh": {
+        "text": "Shooting stars",
+        "type": "combo",
+        "value": "often",
+        "options": [
+          {
+            "label": "Off",
+            "value": "off"
+          },
+          {
+            "label": "Rare (every 30 seconds)",
+            "value": "rare"
+          },
+          {
+            "label": "Every 5 seconds",
+            "value": "often"
+          }
+        ],
+        "index": 4,
+        "order": 4
+      },
+      "kunang": {
+        "text": "Fireflies at night (all seasons and weather)",
+        "type": "bool",
+        "value": true,
+        "index": 5,
+        "order": 5
+      },
+      "__g_season": {
+        "index": 6,
+        "order": 6,
+        "text": "── Season & Weather ──",
+        "type": "text"
+      },
+      "musim": {
+        "text": "Season",
+        "type": "combo",
+        "value": "spring",
+        "options": [
+          {
+            "label": "Automatic (changes every 28 days)",
+            "value": "auto"
+          },
+          {
+            "label": "Spring",
+            "value": "spring"
+          },
+          {
+            "label": "Summer",
+            "value": "summer"
+          },
+          {
+            "label": "Fall",
+            "value": "fall"
+          },
+          {
+            "label": "Winter",
+            "value": "winter"
+          }
+        ],
+        "index": 7,
+        "order": 7
+      },
+      "partikel": {
+        "text": "Seasonal effects (petals, leaves, snow)",
+        "type": "bool",
+        "value": true,
+        "index": 8,
+        "order": 8
+      },
+      "pohon": {
+        "text": "Far shore tree style",
+        "type": "combo",
+        "value": "classic",
+        "options": [
+          {
+            "label": "Classic (pines only)",
+            "value": "classic"
+          },
+          {
+            "label": "Mixed (varied pines, leafy trees, cherry blossoms near the station)",
+            "value": "mixed"
+          }
+        ],
+        "index": 9,
+        "order": 9
+      },
+      "cuaca": {
+        "text": "Weather",
+        "type": "combo",
+        "value": "clear",
+        "options": [
+          {
+            "label": "Clear",
+            "value": "clear"
+          },
+          {
+            "label": "Cloudy",
+            "value": "cloudy"
+          },
+          {
+            "label": "Rain",
+            "value": "rain"
+          },
+          {
+            "label": "Thunderstorm",
+            "value": "storm"
+          },
+          {
+            "label": "Fog",
+            "value": "fog"
+          },
+          {
+            "label": "Windy",
+            "value": "wind"
+          },
+          {
+            "label": "Random (changes every 3 hours)",
+            "value": "random"
+          }
+        ],
+        "index": 10,
+        "order": 10
+      },
+      "sinkron": {
+        "text": "Sync sunrise/sunset to coordinates",
+        "type": "bool",
+        "value": false,
+        "index": 11,
+        "order": 11
+      },
+      "koordinat": {
+        "text": "Coordinates (latitude, longitude)",
+        "type": "textinput",
+        "value": "-6.2, 106.8",
+        "index": 12,
+        "order": 12
+      },
+      "__g_residents": {
+        "index": 13,
+        "order": 13,
+        "text": "── Residents & Wildlife ──",
+        "type": "text"
+      },
+      "hewan": {
+        "text": "Animals (chickens, cows, sheep, cat, dog, rabbits, ducks)",
+        "type": "bool",
+        "value": true,
+        "index": 14,
+        "order": 14
+      },
+      "satwaliar": {
+        "text": "Butterflies and flying birds",
+        "type": "bool",
+        "value": true,
+        "index": 15,
+        "order": 15
+      },
+      "perahu": {
+        "text": "Fishing boat and fishing ship",
+        "type": "bool",
+        "value": true,
+        "index": 16,
+        "order": 16
+      },
+      "kencan": {
+        "text": "Couple picnicking by the lake",
+        "type": "bool",
+        "value": true,
+        "index": 17,
+        "order": 17
+      },
+      "kereta": {
+        "text": "Steam train (passenger and freight)",
+        "type": "combo",
+        "value": "often",
+        "options": [
+          {
+            "label": "Off",
+            "value": "off"
+          },
+          {
+            "label": "Rare (1-2.5 minute gap)",
+            "value": "rare"
+          },
+          {
+            "label": "Normal (15-35 second gap)",
+            "value": "normal"
+          },
+          {
+            "label": "Continuous (back-to-back)",
+            "value": "often"
+          }
+        ],
+        "index": 18,
+        "order": 18
+      },
+      "berhenti": {
+        "text": "Passenger train stops at the station",
+        "type": "bool",
+        "value": true,
+        "index": 19,
+        "order": 19
+      },
+      "penumpang": {
+        "text": "Passengers waiting at the station",
+        "type": "bool",
+        "value": true,
+        "index": 20,
+        "order": 20
+      },
+      "pasangan": {
+        "text": "Show the couple (2 characters)",
+        "type": "bool",
+        "value": true,
+        "index": 21,
+        "order": 21
+      },
+      "penduduk": {
+        "text": "Number of villagers",
+        "type": "slider",
+        "min": 0,
+        "max": 5,
+        "value": 5,
+        "index": 22,
+        "order": 22
+      },
+      "__g_char": {
+        "index": 23,
+        "order": 23,
+        "text": "── Character Editor ──",
+        "type": "text"
+      },
+      "k1kulit": {
+        "text": "Character 1: skin tone",
+        "type": "combo",
+        "value": "0",
+        "options": [
+          {
+            "label": "Light",
+            "value": "0"
+          },
+          {
+            "label": "Medium",
+            "value": "1"
+          },
+          {
+            "label": "Brown",
+            "value": "2"
+          },
+          {
+            "label": "Dark",
+            "value": "3"
+          }
+        ],
+        "index": 24,
+        "order": 24
+      },
+      "k1rambut": {
+        "text": "Character 1: hair color",
+        "type": "color",
+        "value": "0.353 0.227 0.125",
+        "index": 25,
+        "order": 25
+      },
+      "k1gaya": {
+        "text": "Character 1: hairstyle",
+        "type": "combo",
+        "value": "short",
+        "options": [
+          {
+            "label": "Short",
+            "value": "short"
+          },
+          {
+            "label": "Long",
+            "value": "long"
+          },
+          {
+            "label": "Bun",
+            "value": "bun"
+          },
+          {
+            "label": "Straw hat",
+            "value": "hat"
+          }
+        ],
+        "index": 26,
+        "order": 26
+      },
+      "k1baju": {
+        "text": "Character 1: shirt color",
+        "type": "color",
+        "value": "0.753 0.290 0.227",
+        "index": 27,
+        "order": 27
+      },
+      "k1celana": {
+        "text": "Character 1: pants color",
+        "type": "color",
+        "value": "0.227 0.290 0.416",
+        "index": 28,
+        "order": 28
+      },
+      "k2kulit": {
+        "text": "Character 2: skin tone",
+        "type": "combo",
+        "value": "1",
+        "options": [
+          {
+            "label": "Light",
+            "value": "0"
+          },
+          {
+            "label": "Medium",
+            "value": "1"
+          },
+          {
+            "label": "Brown",
+            "value": "2"
+          },
+          {
+            "label": "Dark",
+            "value": "3"
+          }
+        ],
+        "index": 29,
+        "order": 29
+      },
+      "k2rambut": {
+        "text": "Character 2: hair color",
+        "type": "color",
+        "value": "0.910 0.753 0.376",
+        "index": 30,
+        "order": 30
+      },
+      "k2gaya": {
+        "text": "Character 2: hairstyle",
+        "type": "combo",
+        "value": "long",
+        "options": [
+          {
+            "label": "Short",
+            "value": "short"
+          },
+          {
+            "label": "Long",
+            "value": "long"
+          },
+          {
+            "label": "Bun",
+            "value": "bun"
+          },
+          {
+            "label": "Straw hat",
+            "value": "hat"
+          }
+        ],
+        "index": 31,
+        "order": 31
+      },
+      "k2baju": {
+        "text": "Character 2: shirt color",
+        "type": "color",
+        "value": "0.227 0.541 0.416",
+        "index": 32,
+        "order": 32
+      },
+      "k2celana": {
+        "text": "Character 2: pants color",
+        "type": "color",
+        "value": "0.353 0.290 0.478",
+        "index": 33,
+        "order": 33
+      },
+      "__g_audio": {
+        "index": 34,
+        "order": 34,
+        "text": "── Music & Ambient Sound ──",
+        "type": "text"
+      },
+      "musik": {
+        "text": "Background music (original)",
+        "type": "bool",
+        "value": true,
+        "index": 35,
+        "order": 35
+      },
+      "volumemusik": {
+        "text": "Music volume",
+        "type": "slider",
+        "min": 0,
+        "max": 100,
+        "value": 40,
+        "index": 36,
+        "order": 36
+      },
+      "gayamusik": {
+        "text": "Music theme",
+        "type": "combo",
+        "value": "auto",
+        "options": [
+          {
+            "label": "Automatic (follows season and time)",
+            "value": "auto"
+          },
+          {
+            "label": "Spring (cheerful)",
+            "value": "spring"
+          },
+          {
+            "label": "Summer (warm)",
+            "value": "summer"
+          },
+          {
+            "label": "Fall (mellow)",
+            "value": "fall"
+          },
+          {
+            "label": "Winter (calm)",
+            "value": "winter"
+          }
+        ],
+        "index": 37,
+        "order": 37
+      },
+      "suasana": {
+        "text": "Ambient sounds (rain, thunder, wind, crickets, campfire, train, ship)",
+        "type": "bool",
+        "value": true,
+        "index": 38,
+        "order": 38
+      },
+      "volumesuasana": {
+        "text": "Ambient sound volume",
+        "type": "slider",
+        "min": 0,
+        "max": 100,
+        "value": 35,
+        "index": 39,
+        "order": 39
+      },
+      "__g_clock": {
+        "index": 40,
+        "order": 40,
+        "text": "── Clock Display ──",
+        "type": "text"
+      },
+      "tampiljam": {
+        "index": 41,
+        "order": 41,
+        "text": "Show clock",
+        "type": "bool",
+        "value": true
+      },
+      "format24": {
+        "index": 42,
+        "order": 42,
+        "text": "24-hour format",
+        "type": "bool",
+        "value": true
+      },
+      "detik": {
+        "index": 43,
+        "order": 43,
+        "text": "Show seconds",
+        "type": "bool",
+        "value": true
+      },
+      "tanggal": {
+        "index": 44,
+        "order": 44,
+        "text": "Show date",
+        "type": "bool",
+        "value": true
+      },
+      "bahasa": {
+        "index": 45,
+        "order": 45,
+        "text": "Date language",
+        "type": "combo",
+        "value": "id",
+        "options": [
+          {
+            "label": "Indonesian",
+            "value": "id"
+          },
+          {
+            "label": "English",
+            "value": "en"
+          }
+        ]
+      },
+      "posisijam": {
+        "index": 46,
+        "order": 46,
+        "text": "Clock position",
+        "type": "combo",
+        "value": "tr",
+        "options": [
+          {
+            "label": "Top left",
+            "value": "tl"
+          },
+          {
+            "label": "Top center",
+            "value": "tc"
+          },
+          {
+            "label": "Top right",
+            "value": "tr"
+          },
+          {
+            "label": "Bottom left",
+            "value": "bl"
+          },
+          {
+            "label": "Bottom center",
+            "value": "bc"
+          },
+          {
+            "label": "Bottom right",
+            "value": "br"
+          }
+        ]
+      },
+      "jamx": {
+        "text": "Shift clock left/right (%)",
+        "type": "slider",
+        "min": -40,
+        "max": 40,
+        "value": 0,
+        "index": 47,
+        "order": 47
+      },
+      "jamy": {
+        "text": "Shift clock up/down (%)",
+        "type": "slider",
+        "min": -40,
+        "max": 40,
+        "value": 0,
+        "index": 48,
+        "order": 48
+      },
+      "ukuranjam": {
+        "index": 49,
+        "order": 49,
+        "text": "Clock size (%)",
+        "type": "slider",
+        "min": 50,
+        "max": 200,
+        "value": 100
+      },
+      "__g_perf": {
+        "index": 50,
+        "order": 50,
+        "text": "── Performance ──",
+        "type": "text"
+      },
+      "fps": {
+        "index": 51,
+        "order": 51,
+        "text": "FPS limit",
+        "type": "combo",
+        "value": "30",
+        "options": [
+          {
+            "label": "30",
+            "value": "30"
+          },
+          {
+            "label": "60",
+            "value": "60"
+          }
+        ]
+      }
+    }
+  },
+  "preview": "preview.png"
+}
