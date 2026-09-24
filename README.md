@@ -73,8 +73,3 @@ Clock font: [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) b
 
 Choose a license for your own code and art before publishing (MIT is a reasonable choice for the code) and note it here. The bundled font keeps its own OFL license regardless of what you choose for the rest of the project.
 
-## Feedback & Bug Reports
-
-Found an issue or have a feature request? Open an issue on this repository, or reach out via [your Discord/Steam link here].
-
-If you'd like to support development, you can do so here: [your Ko-fi link here].
