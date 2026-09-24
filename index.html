@@ -25,7 +25,7 @@ canvas{display:block;width:100vw;height:100vh;image-rendering:pixelated}
 <script>
 const cv=document.getElementById('c'),ctx=cv.getContext('2d'),$=id=>document.getElementById(id);
 const SH=142,WB=208,H=270;
-let W,B,F,TB,TF,stars,clouds,rip,smoke,wins,lamp,lamps=[],fire=null,last=0,rt,dev=null;
+let W,B,F,TB,TF,winsBG,stars,clouds,rip,smoke,wins,lamp,lamps=[],fire=null,last=0,rt,dev=null;
 const P={mode:'real',jam:12,fps:30,stars:true,meteor:'often',clock:true,h24:true,sec:true,date:true,lang:'id',pos:'tr',size:100,cx:0,cy:0,season:'spring',part:true,weather:'clear',sync:false,lat:-6.2,lon:106.8,trees:'classic',picnic:true,fireflies:true,animals:true,critters:true,boats:true,train:'often',trainstop:true,pax:true,couple:true,npc:5,c1:{skin:'#f5d6b8',hair:'#5a3a20',style:'short',shirt:'#c04a3a',pants:'#3a4a6a'},c2:{skin:'#e0b088',hair:'#e8c060',style:'long',shirt:'#3a8a6a',pants:'#5a4a7a'}};
 addEventListener('keydown',e=>{if(e.key==='n'||e.key==='N')AM.on=!AM.on;if(e.key==='m'||e.key==='M')MU.on=!MU.on;if(e.key==='p'||e.key==='P')P.trees=P.trees==='mixed'?'classic':'mixed';if(e.key==='k'||e.key==='K')train.wait=.1;if(e.key==='w'||e.key==='W'){const L=['clear','cloudy','rain','storm','fog','wind'];P.weather=L[(L.indexOf(P.weather)+1)%6]}if(e.key.length===1&&'01234'.includes(e.key))P.season=['auto','spring','summer','fall','winter'][+e.key];if(e.key==='t'||e.key==='T'){const d=$('dev'),on=d.style.display!=='block';d.style.display=on?'block':'none';dev=on?+$('ts').value:null}});
 $('ts').oninput=e=>{dev=+e.target.value};
@@ -41,7 +41,7 @@ const mk=()=>{const c=document.createElement('canvas');c.width=W;c.height=H;retu
 
 function build(){
   W=Math.round(H*innerWidth/innerHeight);cv.width=W;cv.height=H;ctx.imageSmoothingEnabled=false;
-  B=mk();F=mk();TB=mk();TF=mk();smoke=[];wins=[];const PAL=PALS[SE];LW=mk();LF=mk();TLW=mk();TLF=mk();BD=mk();let bb=null;treesBuilt=P.trees;
+  B=mk();F=mk();TB=mk();TF=mk();smoke=[];wins=[];winsBG=[];const PAL=PALS[SE];LW=mk();LF=mk();TLW=mk();TLF=mk();BD=mk();let bb=null;treesBuilt=P.trees;
   const r=rng(7),b=B.getContext('2d');let f=F.getContext('2d');const F0=f;
   const R=(c,x,y,w,h,col)=>{if(bb){bb[0]=Math.min(bb[0],x);bb[1]=Math.min(bb[1],y);bb[2]=Math.max(bb[2],x+w);bb[3]=Math.max(bb[3],y+h)}c.fillStyle=PAL[col]||col;c.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h))};
   // ---- lapisan belakang: bukit, desa, hutan
@@ -98,14 +98,14 @@ function build(){
    // bangunan stasiun beratap genteng biru-abu
    R(b,sx-32,120,26,13,'#e8e2d0');R(b,sx-32,129,26,4,'#b8b2a0');
    R(b,sx-36,118,34,2,'#4a5a6a');R(b,sx-33,116,28,2,'#4a5a6a');R(b,sx-29,114,20,2,'#4a5a6a');R(b,sx-29,113,20,1,'#6a7a8a');R(b,sx-36,120,34,1,'#2a3a4a');
-   for(const wx of [sx-29,sx-22,sx-15]){R(b,wx,121,3,3,'#324a6a');wins.push([wx,121,3,3])}
+   for(const wx of [sx-29,sx-22,sx-15]){R(b,wx,121,3,3,'#324a6a');winsBG.push([wx,121,3,3])}
    R(b,sx-30,124,20,2,'#f2ead8');R(b,sx-28,124,2,1,'#2a2a40');R(b,sx-24,125,3,1,'#2a2a40');R(b,sx-19,124,2,1,'#2a2a40');R(b,sx-14,125,2,1,'#2a2a40');
    R(b,sx-28,127,16,6,'#5a6a7a');R(b,sx-27,128,7,5,'#8ec8e0');R(b,sx-19,128,7,5,'#8ec8e0');
    // kanopi peron, bangku, dua mesin minuman
    R(b,sx,120,40,2,'#4a5a6a');R(b,sx,119,40,1,'#6a7a8a');for(const px of [sx+2,sx+14,sx+26,sx+37])R(b,px,122,1,11,'#6a6a70');
    R(b,sx+6,130,10,1,'#a07850');R(b,sx+7,131,1,2,'#6f4a2e');R(b,sx+14,131,1,2,'#6f4a2e');
    R(b,sx+20,126,4,7,'#c0392b');R(b,sx+21,127,2,3,'#f2ead8');R(b,sx+26,126,4,7,'#2f5a9a');R(b,sx+27,127,2,3,'#f2ead8');
-   R(b,sx+14,123,2,2,'#7a6a40');R(b,sx+30,123,2,2,'#7a6a40');wins.push([sx+14,123,2,2],[sx+30,123,2,2]);
+   R(b,sx+14,123,2,2,'#7a6a40');R(b,sx+30,123,2,2,'#7a6a40');winsBG.push([sx+14,123,2,2],[sx+30,123,2,2]);
    // papan nama stasiun di kedua ujung
    for(const px of [sx-42,sx+42]){R(b,px,119,1,14,'#6a6a70');R(b,px-5,115,11,5,'#2a6a4a');R(b,px-4,117,9,1,'#f2ead8');R(b,px-3,116,2,1,'#f2ead8');R(b,px+2,116,3,1,'#f2ead8')}
    // tanggul beton dan batu pemecah ombak di tepi pantai
@@ -318,8 +318,15 @@ function draw(h,t,date,dt){
   const cc=css(mix(mix(mix([70,80,120],[255,255,255],day),[255,170,120],warm*.5),mix([50,55,70],[140,148,165],day),ov*.85),.92);
   for(const c of clouds.slice(0,7+Math.round(ov*9))){c.x+=c.v*(1+wc.wind*3)*dt;cloud(((c.x%(W+40))+W+40)%(W+40)-30,c.y,c.s,cc)}
   drawBirds(t,dt,day,ov);
+  if(P.boats&&!ice){if(ship.wait>0)ship.wait-=dt;else{ship.x+=ship.dir*6*dt;if(ship.x>W+90||ship.x<-90){ship.dir*=-1;ship.x=ship.dir>0?-80:W+80;ship.wait=8+Math.random()*20}}}
   // lapisan belakang
-  {const bc=BD.getContext('2d');bc.clearRect(0,0,W,H);bc.drawImage(B,0,0);drawTrain(bc,t,dt);tint(TB,BD,day,warm);ctx.drawImage(TB,0,0);trainGlow(night)}
+  {const bc=BD.getContext('2d');bc.clearRect(0,0,W,H);bc.drawImage(B,0,0);drawTrain(bc,t,dt);
+    tint(TB,BD,day,warm);
+    if(night>.02){const flb=.88+.12*Math.sin(t*7),tc=TB.getContext('2d');
+      tc.fillStyle=`rgba(255,214,112,${.95*night})`;for(const w of tw)tc.fillRect(w[0],w[1],w[2],w[3]);
+      if(tlamp){tc.fillStyle=`rgba(255,246,200,${night})`;tc.fillRect(Math.round(tlamp.x)-1,Math.round(tlamp.y)-1,2,2)}
+      tc.fillStyle=`rgba(255,225,140,${night*flb})`;for(const w of winsBG)tc.fillRect(w[0],w[1],w[2],w[3])}
+    ctx.drawImage(TB,0,0)}
   // air: pantulan langit
   for(let y=SH;y<WB;y++){const m=Math.max(0,SH-(y-SH)*2.2);ctx.fillStyle=css(mix(mix(top,hor,Math.pow(m/SH,1.4)),ice?[170,205,228]:[30,80,120],ice?.72:.5+.1*day));ctx.fillRect(0,y,W,1)}
   // pantulan hutan
@@ -327,6 +334,15 @@ function draw(h,t,date,dt){
   ctx.globalAlpha=1;
   // pantulan matahari/bulan
   for(const [o,col,vis] of [[sun,'255,230,150',day],[moon,'235,240,255',night]])if(o&&vis*(1-ov*.9)>.05)for(let rr=0;rr<50;rr+=2){const w=Math.max(1,Math.round(6*(1-rr/60)+Math.sin(t*3+rr)*2));ctx.fillStyle=`rgba(${col},${(ice?.25:.55)*vis*(1-ov*.9)*(1-rr/55)})`;ctx.fillRect(Math.round(o.x-w/2+Math.sin(t*2+rr*.7)*2),SH+3+rr,w,1)}
+  // pantulan cahaya dekat (kapal, lampu dermaga, lentera piknik): pendar pendek tepat di bawah sumbernya
+  if(!ice&&night>.05){
+    const nearLight=(x,strength,seed)=>{for(let rr=0;rr<16;rr+=2){const a=strength*night*(1-rr/18);if(a<=.003)continue;
+      const w=Math.max(1,3-Math.floor(rr/6)),xx=x+Math.sin(t*2.2+seed+rr*.4)*1.4;
+      ctx.fillStyle=`rgba(255,214,140,${a})`;ctx.fillRect(Math.round(xx),Math.round(SH+3+rr*.9),w,1)}};
+    if(P.boats&&ship.wait<=0){const soy=160+Math.round(Math.sin(t*1.1)*.6);nearLight(ship.x+ship.dir*10,.5,ship.x*.1)}
+    nearLight(lamp.x,.45,7);
+    if(P.picnic&&!(h>=22.5||h<6)&&wc.rain<.5)nearLight(.47*W,.4,3)
+  }
   // riak
   if(!ice)for(const q of rip){const a=Math.max(0,Math.sin(t*1.5+q.ph))*.35;ctx.fillStyle=`rgba(255,255,255,${a*(.4+day*.6)})`;ctx.fillRect(Math.round(q.x+Math.sin(t*.5+q.ph)*3),Math.round(q.y),3,1)}
   drawLW(t,dt,day,warm,ice,night);
@@ -510,8 +526,7 @@ function drawRow(c,t,ice){
 function drawLW(t,dt,day,warm,ice,night){
   const c=LW.getContext('2d');c.clearRect(0,0,W,H);
   const on=P.boats&&!ice;
-  if(on){if(ship.wait>0)ship.wait-=dt;else{ship.x+=ship.dir*6*dt;if(ship.x>W+90||ship.x<-90){ship.dir*=-1;ship.x=ship.dir>0?-80:W+80;ship.wait=8+Math.random()*20}}
-    if(ship.wait<=0)drawShip(c,Math.round(ship.x),t,ship.dir)}
+  if(on&&ship.wait<=0)drawShip(c,Math.round(ship.x),t,ship.dir);
   if(P.animals&&!ice)for(const a of animals)if(a.type==='duck'){stepAnimal(a,dt,night);
     const ox=Math.round(a.x),oy=Math.round(a.y)+Math.round(Math.sin(t*1.5+a.ph)*.5);
     c.globalAlpha=.25;DRAW.duck(sp(c,ox,oy,a.dir,true));c.globalAlpha=1;DRAW.duck(sp(c,ox,oy,a.dir,false));
@@ -686,11 +701,6 @@ function drawTrain(c,t,dt){
     if(train.kind==='freight')wagon(q,x0,FREIGHT[k]);
     else{const col=k%2?'#a63a2f':'#2f6a3f';q(x0,-9,12,6,col);q(x0-1,-10,14,1,'#4a3a2a');q(x0,-4,12,1,'#e8c94a');q(x0,-3,12,1,'#2a2a30');for(let i=0;i<3;i++)win(x0+2+i*3,-8,2,3)}
     q(x0+1,-3,3,3,'#3a3a40');q(x0+8,-3,3,3,'#3a3a40');q(x0-2,-5,2,1,'#3a3a40')}
-}
-function trainGlow(night){
-  if(night<.05)return;
-  ctx.fillStyle=`rgba(255,214,112,${.95*night})`;for(const w of tw)ctx.fillRect(w[0],w[1],w[2],w[3]);
-  if(tlamp){disc(tlamp.x,tlamp.y,7,`rgba(255,240,180,${.14*night})`);ctx.fillStyle=`rgba(255,246,200,${night})`;ctx.fillRect(Math.round(tlamp.x)-1,Math.round(tlamp.y)-1,2,2)}
 }
 // ---------- pasangan berkencan: piknik menghadap danau (terlihat dari belakang) ----------
 function drawPicnic(c,t){
